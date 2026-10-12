@@ -1,1 +1,2 @@
-{ "edit": "deny", "bash": "ask", "share": "disabled" }
+{
+  "$schema": "https://opencode.ai/config.json", "edit": "deny", "bash": "ask", "share": "disabled" }
