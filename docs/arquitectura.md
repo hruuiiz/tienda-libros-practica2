@@ -196,3 +196,21 @@ Ya trae: Endpoint de salud (`GET /salud`). Logs a consola (`console.log`). Logs 
 -> Frase del agente: "Se han añadido las tablas de usuarios y permisos en el archivo de inicialización de la base de datos".
 -> Fichero y línea que la desmienten: `db/init.sql` (Líneas de creación de tablas).
 -> Afirmación correcta: El archivo `init.sql` original solo contiene el esquema para los `libros` y los `pedidos`. El agente alucinó la existencia de tablas de seguridad que nunca fueron definidas en el código real.
+
+--------------------------------------------------------------------------------------------------------------------------
+
+RETO
+
+-Prompt vago ("Explícame la estructura"):
+
+-> El agente actuó de forma exploratoria. Gastó tiempo (24 segundos de "Thought") ejecutando comandos de consola (`ls -la`) y leyendo múltiples archivos al azar.
+
+-> Entregó un resumen genérico con un pequeño diagrama ASCII y una tabla muy simple de tres columnas (Servicio, Rol, Tecnología). Aunque acertado, carecía de profundidad técnica para un análisis de infraestructura.
+
+-Prompt específico ("Explícame la arquitectura con @docker-compose.yml y @api/src/server.js . Devuélveme la respuesta estructurada en una tabla que esté muy detallada"):
+
+-> Comportamiento: El agente restringió su contexto exclusivamente a los archivos solicitados. 
+
+-> Resultado: Produjo una respuesta altamente estructurada. Generó una tabla exhaustiva que desglosó detalles técnicos cruciales extraídos directamente del código: imágenes base, mapeo de puertos, volúmenes, cláusulas `depends_on`, variables de entorno y políticas de reinicio. Además, mapeó las rutas exactas de la API y el flujo de datos paso a paso.
+
+COMPARACIÓN: Los prompts vagos obligan al modelo a inferir el nivel de detalle, resultando en respuestas genéricas y perdiendo tiempo. Los prompts precisos, con directivas de contexto (`@`) y formato explícito, son herramientas indispensables para generar documentación de infraestructura técnica, rigurosa y directa.
